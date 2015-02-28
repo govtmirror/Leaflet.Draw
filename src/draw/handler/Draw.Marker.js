@@ -74,12 +74,12 @@ L.Draw.Marker = L.Draw.Feature.extend({
 				icon: this.options.icon,
 				zIndexOffset: this.options.zIndexOffset
 			});
-			this._map.fire('draw:drawstartmarker', { marker: this._marker });
 			// Bind to both marker and map to make sure we get the click event.
 			this._marker.on('click', this._onClick, this);
 			this._map
 				.on('click', this._onClick, this)
 				.addLayer(this._marker);
+			this._map.fire('draw:drawstartmarker', { marker: this._marker });
 		}
 		else {
 			latlng = this._mouseMarker.getLatLng();
