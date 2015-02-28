@@ -23,9 +23,11 @@ L.Draw.Feature = L.Handler.extend({
 
 		this.fire('enabled', { handler: this.type });
 
-		console.log(this);
-
-		this._map.fire('draw:drawstart', { layerType: this.type });
+		if (this.type === 'marker') {
+			this._map.fire('draw:drawstart', { layerType: this.type, shape: this._marker });
+		} else {
+			this._map.fire('draw:drawstart', { layerType: this.type });
+		}
 	},
 
 	disable: function () {
