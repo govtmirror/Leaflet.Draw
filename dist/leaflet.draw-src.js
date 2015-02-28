@@ -1022,6 +1022,7 @@ L.Draw.Marker = L.Draw.Feature.extend({
 				icon: this.options.icon,
 				zIndexOffset: this.options.zIndexOffset
 			});
+			this._map.fire('draw:drawstartmarker', { marker: this._marker });
 			// Bind to both marker and map to make sure we get the click event.
 			this._marker.on('click', this._onClick, this);
 			this._map
@@ -1045,7 +1046,6 @@ L.Draw.Marker = L.Draw.Feature.extend({
 
 	_fireCreatedEvent: function () {
 		var marker = new L.Marker(this._marker.getLatLng(), { icon: this.options.icon });
-		this._map.fire('draw:drawstartmarker', { marker: this._marker });
 		L.Draw.Feature.prototype._fireCreatedEvent.call(this, marker);
 	}
 });
