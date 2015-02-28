@@ -97,6 +97,7 @@ L.Draw.Marker = L.Draw.Feature.extend({
 
 	_fireCreatedEvent: function () {
 		var marker = new L.Marker(this._marker.getLatLng(), { icon: this.options.icon });
+		this._map.fire('draw:drawstartmarker', { marker: this._marker });
 		L.Draw.Feature.prototype._fireCreatedEvent.call(this, marker);
 	}
 });
