@@ -21,7 +21,9 @@ L.Edit.Poly = L.Handler.extend({
 		var poly = this._poly;
 
 		if (!(poly instanceof L.Polygon)) {
-			poly.options.editing.fill = false;
+			try {
+				poly.options.editing.fill = false;
+			} catch (e) {}
 		}
 
 		poly.setStyle(poly.options.editing);
